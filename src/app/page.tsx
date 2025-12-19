@@ -19,9 +19,9 @@ export default function Home() {
   const itemVars: Variants = {
     initial: { 
       opacity: 0, 
-      filter: "blur(8px)", // 30px에서 8px로 대폭 축소. 훨씬 선명하게 등장 시작
-      scale: 0.99, // 스케일 변화를 더 미세하게 조정
-      y: 15 // 이동 거리를 살짝 줄여 안정감 부여
+      filter: "blur(8px)", 
+      scale: 0.99, 
+      y: 15 
     },
     animate: { 
       filter: "blur(0px)",
@@ -29,15 +29,15 @@ export default function Home() {
       y: 0,
       scale: 1,
       transition: { 
-        duration: 1.5, // 너무 늘어지지 않게 1.5초로 최적화
-        ease: [0.22, 1, 0.36, 1] // 조금 더 탄력 있는 커브로 변경
+        duration: 1.5, 
+        ease: [0.22, 1, 0.36, 1] 
       } 
     },
   };
 
   return (
     <div className="relative w-full h-screen overflow-hidden text-white bg-zinc-950">
-      {/* 1. BACKGROUND VIDEO SECTION */}
+
       <div className="absolute inset-0 z-0 ">
         <video
           autoPlay loop muted playsInline preload="auto"
@@ -49,14 +49,14 @@ export default function Home() {
         <div className="absolute inset-0 bg-black/40" />
       </div>
 
-      {/* 2. MAIN CONTENT AREA */}
+    
       <motion.div
         variants={containerVars}
         initial="initial"
         animate="animate"
         className="relative z-10 flex flex-col justify-center items-center h-full text-center px-6"
       >
-        {/* BIG TITLES */}
+      
         <motion.div variants={itemVars} className="flex flex-col items-center mb-16 md:mb-20">
           <h1 className="text-[18vw] md:text-[14vw] font-[1000] leading-[0.75] tracking-[-0.05em] uppercase text-orange-500">
             PEECE
@@ -66,15 +66,15 @@ export default function Home() {
           </h1>
         </motion.div>
 
-        {/* SLOGAN: h2 */}
+        
         <motion.h2 
           variants={itemVars} 
-          className="text-xl md:text-[2.8vw] font-[900] leading-none tracking-tighter uppercase text-orange-500 mb-8"
+          className="text-xl md:text-[2.8vw] font-black leading-none tracking-tighter uppercase text-orange-500 mb-8"
         >
           JEJU EMERGENCY SERVICE
         </motion.h2>
 
-        {/* DESCRIPTION: p */}
+       
         <motion.p 
           variants={itemVars} 
           className="text-[10px] md:text-lg font-light tracking-[0.6em] md:tracking-[1rem] uppercase opacity-60"
@@ -97,18 +97,18 @@ export default function Home() {
       onClick={() => router.push('/login')}
       className="relative w-full md:w-auto px-12 md:px-28 py-5 md:py-7 cursor-pointer active:scale-95 transition-all duration-500 rounded-2xl overflow-hidden"
     >
-      {/* 1. GLASS BASE: 배경 블러와 투명도 담당 */}
+      
       <div className="absolute inset-0 bg-white/10 backdrop-blur-md transition-all duration-500" />
       
-      {/* 2. INDEPENDENT BORDER: 테두리 전용 레이어 (Anti-aliasing 방지 핵심) */}
+      
       <div className="absolute inset-0 rounded-2xl border border-white/20 group-hover:border-orange-500/50 transition-colors duration-500 z-20" />
       
-      {/* 3. HOVER EFFECTS: 주황색 광채와 빛줄기 */}
-      <div className="absolute inset-0 bg-gradient-to-tr from-orange-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
+     
+      <div className="absolute inset-0 bg-linear-to-tr from-orange-500/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
       
-      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-r from-transparent via-white/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 pointer-events-none z-10" />
+      <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-linear-to-r from-transparent via-white/10 to-transparent -skew-x-12 -translate-x-full group-hover:translate-x-full   pointer-events-none z-10 transition-transform duration-1000" />
 
-      {/* 4. TEXT CONTENT: 최상단 배치 */}
+     
       <span className="relative z-30 text-white text-xs md:text-lg font-[950] tracking-[0.2em] md:tracking-[0.5em] uppercase group-hover:text-orange-500 transition-colors duration-700">
         Start Finding Toilet
       </span>
@@ -117,7 +117,7 @@ export default function Home() {
 </motion.div>
       </motion.div>
 
-      {/* 3. FOOTER */}
+  
       <motion.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.5 }}

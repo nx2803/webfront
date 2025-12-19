@@ -45,7 +45,6 @@ export default function LoginPage() {
         animate="animate"
         className="relative w-full max-w-lg z-10"
       >
-        {/* MAIN GLASS CARD */}
         <div className="relative overflow-hidden rounded-[40px] bg-white/30 backdrop-blur-[30px] border border-white/60 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.05)] p-12 md:p-16">
           <div className="relative z-10">
             {/* HEADER */}
@@ -63,26 +62,21 @@ export default function LoginPage() {
               <input
                 type="text"
                 placeholder="EMAIL ADDRESS"
-                className="w-full bg-white/50 border border-white px-7 py-5 rounded-2xl outline-none focus:ring-2 focus:ring-orange-200 focus:bg-white transition-all text-slate-700 placeholder:text-slate-300 text-sm tracking-widest font-bold"
+                className="w-full bg-white/40 border border-white px-7 py-5 rounded-2xl outline-none focus:bg-white/80 transition-all text-slate-700 placeholder:text-slate-400 text-sm tracking-widest font-bold"
               />
               <input
                 type="password"
                 placeholder="PASSWORD"
-                className="w-full bg-white/50 border border-white px-7 py-5 rounded-2xl outline-none focus:ring-2 focus:ring-orange-200 focus:bg-white transition-all text-slate-700 placeholder:text-slate-300 text-sm tracking-widest font-bold"
+                className="w-full bg-white/40 border border-white px-7 py-5 rounded-2xl outline-none focus:bg-white/80 transition-all text-slate-700 placeholder:text-slate-400 text-sm tracking-widest font-bold"
               />
             </motion.div>
 
-            {/* MAIN LOGIN BUTTON: GLASSMORPHISM APPLIED */}
+            {/* MAIN LOGIN BUTTON: SHINE REMOVED, SOLID INTERACTION */}
             <motion.div variants={itemVars} className="group relative w-full mt-10">
-              <button className="relative w-full py-6 cursor-pointer active:scale-95 transition-all duration-500 rounded-2xl overflow-hidden shadow-xl shadow-orange-100/50">
-                {/* 배경 및 테두리 레이어 */}
-                <div className="absolute inset-0 bg-orange-500/90 transition-all duration-500 group-hover:bg-orange-600" />
+              <button className="relative w-full py-6 cursor-pointer active:scale-95 transition-all duration-500 rounded-2xl overflow-hidden shadow-xl shadow-orange-200/30">
+                {/* 오직 배경색과 테두리만 유지하여 절제미 강조 */}
+                <div className="absolute inset-0 bg-orange-500 transition-colors duration-500 group-hover:bg-orange-600" />
                 <div className="absolute inset-0 rounded-2xl border border-white/20 z-20" />
-                
-                {/* 광채 효과 (Home 버튼 기술 이식) */}
-                <div className="absolute inset-0 bg-gradient-to-tr from-white/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none z-10" />
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-r from-transparent via-white/20 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 pointer-events-none z-10" />
-
                 <span className="relative z-30 text-white font-[950] tracking-[0.5em] uppercase text-sm">
                   Sign In
                 </span>
@@ -90,30 +84,28 @@ export default function LoginPage() {
             </motion.div>
 
             <motion.div variants={itemVars} className="relative my-10 flex items-center justify-center">
-              <span className="relative bg-transparent px-4 text-[10px] font-black text-slate-500 tracking-[0.3em] uppercase">Or Continue With</span>
+              <span className="relative bg-transparent px-4 text-[10px] font-black text-slate-400 tracking-[0.3em] uppercase">Or Continue With</span>
             </motion.div>
 
-            {/* SOCIAL BUTTONS: GLASSMORPHISM APPLIED */}
+            {/* SOCIAL BUTTONS: CLEAN VERSION */}
             <motion.div variants={itemVars} className="grid grid-cols-2 gap-4">
-              <button className="group relative flex items-center justify-center py-5 bg-white/40 border border-white rounded-2xl overflow-hidden transition-all hover:bg-white/60 hover:shadow-lg duration-300">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-r from-transparent via-blue-400/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 pointer-events-none" />
-                <span className="relative z-10 text-2xl font-black text-blue-600 uppercase"><BsGoogle/></span>
+              <button className="flex items-center justify-center py-5 bg-white/40 border border-white rounded-2xl transition-all hover:bg-white/70 hover:shadow-md duration-300">
+                <span className="text-2xl text-blue-600"><BsGoogle/></span>
               </button>
               
-              <button className="group relative flex items-center justify-center py-5 bg-white/40 border border-white rounded-2xl overflow-hidden transition-all hover:bg-white/60 hover:shadow-lg duration-300">
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-700 bg-gradient-to-r from-transparent via-green-400/10 to-transparent -skew-x-12 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-1000 pointer-events-none" />
-                <span className="relative z-10 text-2xl font-black text-green-400 uppercase"><SiNaver/></span>
+              <button className="flex items-center justify-center py-5 bg-white/40 border border-white rounded-2xl transition-all hover:bg-white/70 hover:shadow-md duration-300">
+                <span className="text-2xl text-green-500"><SiNaver/></span>
               </button>
             </motion.div>
 
             {/* FOOTER LINKS */}
             <motion.div variants={itemVars} className="mt-12 flex flex-col items-center gap-6">
-              <button className="text-[11px] font-black text-slate-500 tracking-[0.3em] uppercase hover:text-orange-500 transition-colors">
+              <button className="text-[11px] font-black text-slate-400 tracking-[0.3em] uppercase hover:text-orange-500 transition-colors">
                 Create New Account
               </button>
               <button
                 onClick={() => router.push('/')}
-                className="text-[10px] font-bold text-slate-500 tracking-[0.5em] uppercase hover:text-orange-500 transition-colors"
+                className="text-[10px] font-bold text-slate-400 tracking-[0.5em] uppercase hover:text-orange-500 transition-colors"
               >
                 ← Return to Main
               </button>
