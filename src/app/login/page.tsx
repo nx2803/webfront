@@ -29,10 +29,10 @@ export default function LoginPage() {
 
   return (
     <main className="fixed inset-0 overflow-hidden flex items-center justify-center p-6">
-      {/* BACKGROUND GRADIENT */}
+     
       <div className="absolute inset-0 z-0 bg-linear-to-tr from-[#e1fbff] via-[#ffe9c5] to-[#e0f5ff]" />
 
-      {/* AMBIENT ORB */}
+      
       <motion.div
         animate={{ scale: [1, 1.2, 1], x: [0, 50, 0], y: [0, 30, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
@@ -57,7 +57,7 @@ export default function LoginPage() {
               </p>
             </motion.div>
 
-            {/* INPUTS */}
+            
             <motion.div variants={itemVars} className="space-y-4">
               <input
                 type="text"
@@ -71,10 +71,10 @@ export default function LoginPage() {
               />
             </motion.div>
 
-            {/* MAIN LOGIN BUTTON: SHINE REMOVED, SOLID INTERACTION */}
+       
             <motion.div variants={itemVars} className="group relative w-full mt-10">
               <button className="relative w-full py-6 cursor-pointer active:scale-95 transition-all duration-500 rounded-2xl overflow-hidden shadow-xl shadow-orange-200/30">
-                {/* 오직 배경색과 테두리만 유지하여 절제미 강조 */}
+               
                 <div className="absolute inset-0 bg-orange-500 transition-colors duration-500 group-hover:bg-orange-600" />
                 <div className="absolute inset-0 rounded-2xl border border-white/20 z-20" />
                 <span className="relative z-30 text-white font-[950] tracking-[0.5em] uppercase text-sm">
@@ -87,7 +87,7 @@ export default function LoginPage() {
               <span className="relative bg-transparent px-4 text-[10px] font-black text-slate-400 tracking-[0.3em] uppercase">Or Continue With</span>
             </motion.div>
 
-            {/* SOCIAL BUTTONS: CLEAN VERSION */}
+     
             <motion.div variants={itemVars} className="grid grid-cols-2 gap-4">
               <button className="flex items-center justify-center py-5 bg-white/40 border border-white rounded-2xl transition-all hover:bg-white/70 hover:shadow-md duration-300">
                 <span className="text-2xl text-blue-600"><BsGoogle/></span>
@@ -98,16 +98,16 @@ export default function LoginPage() {
               </button>
             </motion.div>
 
-            {/* FOOTER LINKS */}
+       
             <motion.div variants={itemVars} className="mt-12 flex flex-col items-center gap-6">
               <button className="text-[11px] font-black text-slate-400 tracking-[0.3em] uppercase hover:text-orange-500 transition-colors">
                 Create New Account
               </button>
               <button
-                onClick={() => router.push('/')}
+                onClick={() => router.back()}
                 className="text-[10px] font-bold text-slate-400 tracking-[0.5em] uppercase hover:text-orange-500 transition-colors"
               >
-                ← Return to Main
+                ← Return
               </button>
             </motion.div>
           </div>
