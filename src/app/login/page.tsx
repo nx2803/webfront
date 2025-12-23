@@ -78,7 +78,7 @@ export default function LoginPage() {
                 <div className="absolute inset-0 bg-orange-500 transition-colors duration-500 group-hover:bg-orange-600" />
                 <div className="absolute inset-0 rounded-2xl border border-white/20 z-20" />
                 <span className="relative z-30 text-white font-[950] tracking-[0.5em] uppercase text-sm">
-                  Sign In
+                  Log In
                 </span>
               </button>
             </motion.div>
