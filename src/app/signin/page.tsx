@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { BsGoogle } from "react-icons/bs";
 import { SiNaver } from "react-icons/si";
 
-export default function LoginPage() {
+export default function signinPage() {
   const router = useRouter();
 
   const containerVars = {
@@ -20,19 +20,19 @@ export default function LoginPage() {
 
   const itemVars: Variants = {
     initial: { opacity: 0, y: 15 },
-    animate: {
-      opacity: 1,
+    animate: { 
+      opacity: 1, 
       y: 0,
-      transition: { duration: 0.8, ease: [0.19, 1, 0.22, 1] }
+      transition: { duration: 0.8, ease: [0.19, 1, 0.22, 1] } 
     },
   };
 
   return (
     <main className="fixed inset-0 overflow-hidden flex items-center justify-center p-6">
-
+     
       <div className="absolute inset-0 z-0 bg-linear-to-tr from-[#e1fbff] via-[#ffe9c5] to-[#e0f5ff]" />
 
-
+      
       <motion.div
         animate={{ scale: [1, 1.2, 1], x: [0, 50, 0], y: [0, 30, 0] }}
         transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
@@ -50,15 +50,20 @@ export default function LoginPage() {
             {/* HEADER */}
             <motion.div variants={itemVars} className="mb-14">
               <h2 className="text-5xl font-[950] tracking-tighter uppercase text-slate-800 ">
-                LOG <span className="text-orange-500">IN</span>
+                SIGN <span className="text-orange-500">IN</span>
               </h2>
               <p className="mt-6 text-[11px] font-black tracking-[0.5em] text-slate-500 uppercase leading-relaxed">
-                To Save <br />Your Dignity
+                For your <br />Royal Road
               </p>
             </motion.div>
 
-
+            
             <motion.div variants={itemVars} className="space-y-4">
+              <input
+                type="text"
+                placeholder="NICK NAME"
+                className="w-full bg-white/40 border border-white px-7 py-5 rounded-2xl outline-none focus:bg-white/80 transition-all text-slate-700 placeholder:text-slate-400 text-sm tracking-widest font-bold"
+              />
               <input
                 type="text"
                 placeholder="EMAIL ADDRESS"
@@ -71,38 +76,19 @@ export default function LoginPage() {
               />
             </motion.div>
 
-
+       
             <motion.div variants={itemVars} className="group relative w-full mt-10">
               <button className="relative w-full py-6 cursor-pointer active:scale-95 transition-all duration-500 rounded-2xl overflow-hidden shadow-xl shadow-orange-200/30">
-
+               
                 <div className="absolute inset-0 bg-orange-500 transition-colors duration-500 group-hover:bg-orange-600" />
                 <div className="absolute inset-0 rounded-2xl border border-white/20 z-20" />
                 <span className="relative z-30 text-white font-[950] tracking-[0.5em] uppercase text-sm">
-                  Log In
+                  Sign In
                 </span>
               </button>
             </motion.div>
 
-            <motion.div variants={itemVars} className="relative my-10 flex items-center justify-center">
-              <span className="relative bg-transparent px-4 text-[10px] font-black text-slate-400 tracking-[0.3em] uppercase">Or Continue With</span>
-            </motion.div>
-
-
-            <motion.div variants={itemVars} className="grid grid-cols-2 gap-4">
-              <button className="flex items-center justify-center py-5 bg-white/40 border border-white rounded-2xl transition-all hover:bg-white/70 hover:shadow-md duration-300">
-                <span className="text-2xl text-blue-600"><BsGoogle /></span>
-              </button>
-
-              <button className="flex items-center justify-center py-5 bg-white/40 border border-white rounded-2xl transition-all hover:bg-white/70 hover:shadow-md duration-300">
-                <span className="text-2xl text-green-500"><SiNaver /></span>
-              </button>
-            </motion.div>
-
-
             <motion.div variants={itemVars} className="mt-12 flex flex-col items-center gap-6">
-              <button className="text-[11px] font-black text-slate-400 tracking-[0.3em] uppercase hover:text-orange-500 transition-colors" onClick={() => router.push("/signin")}>
-                Create New Account
-              </button>
               <button
                 onClick={() => router.back()}
                 className="text-[10px] font-bold text-slate-400 tracking-[0.5em] uppercase hover:text-orange-500 transition-colors"

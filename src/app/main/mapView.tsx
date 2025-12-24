@@ -5,13 +5,14 @@ import { useState, useEffect } from "react";
 import { FaMale, FaFemale } from "react-icons/fa";
 import toast, { Toaster } from "react-hot-toast";
 
+
 let cachedToilets: Toilet[] = [];
 
 interface Toilet {
-    id: number;
-    name: string;
-    lat: number;
-    lng: number;
+    data_cd: string;
+    toilet_nm: string;
+    la_crdnt: number;
+    lo_crdnt: number;
 }
 
 export default function MapView() {
@@ -28,10 +29,18 @@ export default function MapView() {
         fetch("/data/toilets.json")
             .then((res) => res.json())
             .then((data) => {
-                cachedToilets = data;
-                setToilets(data);
+                // 핵심: data가 아니라 data.toilet_info를 가져와야 한다!
+                if (data && data.toilet_info) {
+                    const sanitized = data.toilet_info.map((t: any) => ({
+                        ...t,
+                        la_crdnt: Number(t.la_crdnt),
+                        lo_crdnt: Number(t.lo_crdnt)
+                    }));
+                    cachedToilets = sanitized;
+                    setToilets(sanitized);
+                }
             })
-            .catch((err) => console.error(err));
+            .catch((err) => console.error("지도 데이터 로드 실패:", err));
     }, []);
 
     const handleMarkerClick = (name: string) => {
@@ -57,8 +66,8 @@ export default function MapView() {
     };
 
     if (loading) return (
-        <div className="flex h-full items-center justify-center font-black text-orange-500 animate-pulse text-2xl tracking-widest">
-            로딩...
+        <div className="flex h-full items-center justify-center font-black text-orange-500 animate-pulse text-2xl tracking-widest bg-white/10 backdrop-blur-md">
+            MAP LOADING...
         </div>
     );
 
@@ -66,7 +75,7 @@ export default function MapView() {
         <div className="w-full h-full relative">
             <Toaster position="top-center" />
             <Map
-                center={{ lat: 33.51315888, lng: 126.5246321 }}
+                center={{ lat: 33.51315888, lng: 126.5246321 }} 
                 style={{ width: "100%", height: "100%" }}
                 level={3}
             >
@@ -86,29 +95,30 @@ export default function MapView() {
                                 lineHeight: '60px',
                                 fontSize: '18px',
                                 boxShadow: '0 10px 20px rgba(0,0,0,0.3)',
+                                border: '2px solid white'
                             }
                         ]}
                     >
                         {toilets.map((toilet) => (
                             <CustomOverlayMap
-                                key={toilet.id}
-                                position={{ lat: toilet.lat, lng: toilet.lng }}
+                                key={toilet.data_cd}
+                                position={{ lat: toilet.la_crdnt, lng: toilet.lo_crdnt }}
                                 yAnchor={1.2}
                             >
                                 <div
-                                    onClick={() => handleMarkerClick(toilet.name)}
+                                    onClick={() => handleMarkerClick(toilet.toilet_nm)}
                                     className="relative flex flex-col items-center group cursor-pointer"
                                 >
-                                    <div className="relative flex items-center gap-2 px-3 py-1.5 rounded-2xl shadow-xl transition-all bg-white group-hover:scale-110 group-hover:border-orange-500">
-                                        <span className="text-xs font-black uppercase text-zinc-900">
-                                            {toilet.name}
+                                    <div className="relative flex items-center gap-2 px-3 py-1.5 rounded-2xl shadow-xl transition-all bg-white border border-slate-200 group-hover:scale-110 group-hover:border-orange-500 group-hover:z-50">
+                                        <span className="text-[10px] md:text-xs font-black uppercase text-zinc-900 whitespace-nowrap">
+                                            {toilet.toilet_nm}
                                         </span>
-                                        <div className="flex gap-1 items-center">
-                                            <FaMale className="text-cyan-500" />
-                                            <FaFemale className="text-red-500" />
+                                        <div className="flex gap-0.5 items-center">
+                                            <FaMale className="text-cyan-500 text-[10px]" />
+                                            <FaFemale className="text-red-500 text-[10px]" />
                                         </div>
                                     </div>
-                                    <div className="w-3 h-3 rotate-45 -mt-1.75 bg-white" />
+                                    <div className="w-2.5 h-2.5 rotate-45 -mt-1.5 bg-white border-r border-b border-slate-200" />
                                 </div>
                             </CustomOverlayMap>
                         ))}
